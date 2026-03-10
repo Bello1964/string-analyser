@@ -1,0 +1,47 @@
+<%- include("partials/header") %>
+
+  <!-- Main Section -->
+  <main class="section">
+    <div class="container" >
+
+      <h2>Analyze a String</h2>
+      <p class="muted">
+        Paste or type the string you want to analyze below, then submit
+        it to see detailed insights.
+      </p>
+
+      <!-- String Form -->
+      <form
+        action="/strings"
+        method="POST"
+        id="stringForm"
+        class="string-form"
+      >
+
+        <div class="form-group">
+          <label for="value">String to Analyze</label>
+
+          <textarea
+            id="inputString"
+            name="value"
+            class="string-input"
+            rows="8"
+            placeholder="Paste your string here..."
+            required
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="analyzeBtn"
+          class="btn primary"
+        >
+          Analyze String
+        </button>
+
+      </form>
+
+    </div>
+  </main>
+
+ <%- include("partials/footer") %>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- SEO Meta -->
+  <title>String Analyzer Tool | Analyze Strings Instantly</title>
+  <meta
+    name="description"
+    content="Analyze strings instantly. Count characters, detect whitespace, validate formats, and understand string structure with a fast, developer-friendly string analyzer."
+  />
+  <meta
+    name="keywords"
+    content="string analyzer, string length checker, character counter, text analyzer, developer tools"
+  />
+  <meta name="author" content="String Analyzer" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="String Analyzer Tool" />
+  <meta
+    property="og:description"
+    content="Understand your strings instantly. Built for developers, analysts, and anyone working with text."
+  />
+  <meta property="og:type" content="website" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+   <!-- Header -->
+
+    <header class="header" style="--min-height: <%=  page === 'savedStrings'? '160px': '80px' %>;">
+    <div class= "container header-flex"> 
+          <a href="/"><h1 class="logo">String Analyzer</h1></a>
+      <div class="header-actions" >
+        <button id="themeToggle" class="toggle-btn" aria-label="Toggle dark mode">
+        Dark Mode
+      </button>
+        <a href="/strings"><button class="btn">Saved Strings</button></a>
+    </div>
+    </div>
+
+<!-- LOGIC FOR SHOWING SEARCH BAR -->
+
+<% if (page === "savedStrings"){%>
+
+    <div class="header-search container header-flex">
+            <input
+              type="text"
+              id="liveSearch"
+              placeholder="Search your string..."
+              class="search-input"
+              />
+  <button id="searchBtn">Search</button>
+  </div> 
+  <%}%>
+  </header>

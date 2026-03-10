@@ -7,11 +7,15 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "mongoose": "^8.19.2"
+    "method-override": "^3.0.0",
+    "mongoose": "^8.19.2",
+    "path": "^0.12.7"
   }
 }

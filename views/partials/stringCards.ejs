@@ -1,0 +1,128 @@
+  <h2>PREVIOUSLY ANALYSED STRINGS</h2>
+  <div style="display:flex; justify-content: space-between; align-items:center;">
+    <p class="muted">
+      COUNT: <strong class="count"><%= response.count || 0 %></strong>
+      &nbsp; | &nbsp;
+      FILTER APPLIED: <strong>
+        <% if (response.filter_applied !== "Word search") { %>
+          <%=Object.values(response.filter_applied).length || 'None' %>
+         <% }else{ %> 
+        <%= response.filter_applied %>
+        <% } %>
+      </strong>
+    </p>
+
+<div class="menu-wrapper">
+    <button class="menu-trigger" aria-label="Options">⋮</button>
+
+   <div class="menu-dropdown">
+
+  <!-- SORT -->
+  <div class="menu-section">  
+    <label class="menu-title">
+      <input type="checkbox" id="sortToggle">
+      Sort <span id="sortCount" class="badge"></span>
+    </label>
+
+    <div class="menu-options sort-options">
+      <label><input type="radio" name="sort" value="az"> A &rarr; Z</label>
+      <label><input type="radio" name="sort" value="za"> Z &rarr; A</label>
+      <label><input type="radio" name="sort" value="wc_desc"> Word Count ↓</label>
+      <label><input type="radio" name="sort" value="wc_asc"> Word Count ↑</label>
+      <label><input type="radio" name="sort" value="len_desc"> Length ↓</label>
+      <label><input type="radio" name="sort" value="len_asc"> Length ↑</label>
+      <label><input type="radio" name="sort" value="oldest"> Oldest</label>
+    </div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="menu-section">
+    <label class="menu-title">
+      <input type="checkbox" id="filterToggle">
+      Filter <span id="filterCount" class="badge"></span>
+    </label>
+
+    <div class="menu-options filter-options">
+
+      <label>
+        Min length
+        <input type="number" data-filter="min_length" class="filter-input" id="minLength">
+      </label>
+
+      <label>
+        Max length
+        <input type="number" data-filter="max_length" class="filter-input" id="maxLength">
+      </label>
+
+      <label>
+        Word count
+        <input type="number" data-filter="word_count" class="filter-input" id="wordCount">
+      </label>
+
+      <label>
+        Contains...
+        <input type="text" data-filter="contains_character" class="filter-input" id="containsChar">
+      </label>
+
+      <label>
+         Palindrome
+        <input type="text" data-filter="is_palindrome" id="isPalindrome"
+         placeholder="True/False"  class="filter-input" autocomplete="off">
+      </label>
+
+    </div>
+
+     <button class="activate" id="activation">Activate</button>
+  </div>
+
+</div>
+  </div>
+</div>
+
+
+<div id="analysisResults">
+<% response.data.forEach(function(item){ %>
+      <div class="card analysis-card slide-up" style="margin-top:2rem;">
+        <div style="display:flex; justify-content: space-between; align-items:center;">
+        <p class="muted">
+          <strong>Date of Creation:</strong>
+          <%= item.created_at %>
+        </p> <button class="del"  data-id ="<%=item._id%>">Delete</button>
+          </div>
+        <ul class="features">
+          <li><strong>SHA256 Hash:</strong> <span class= "hash"><%= item.properties.sha256_hash %></span></li>
+          <li><strong>Word Count: </strong><%= item.properties.word_count??1 %></li>
+          <li><strong>Number of Characters:</strong> <%= item.properties.length %></li>
+          <li><strong>Palindromic:</strong> <%= item.properties.is_palindrome ? 'Yes' : 'No' %></li>
+
+          <li> 
+            <strong>Unique Characters:</strong>
+            <%= item.properties.unique_characters %>
+          </li>
+
+          <li>
+            <strong>Letter Frequency:</strong>
+            <% Object.keys(item.properties.Character_frequency_map).forEach(function(letter){ %>
+              <%= letter.toUpperCase() %>: <%= item.properties.Character_frequency_map[letter] %>  
+            <% }) %>
+          </li>
+        </ul>
+
+        <!-- Analysed String -->
+        <div style="margin-top:1.5rem;">
+          <strong>Analysed String:</strong>
+
+          <p class="string-preview muted"
+             data-expanded="false"
+             data-full="<%- item.value %>">
+            <%= item.value.slice(0, 180) %>...
+          </p>
+
+          <span class="see-more muted js-toggle">
+            See more
+          </span>
+        </div>
+
+      </div>
+<% }) %>
+</div>
