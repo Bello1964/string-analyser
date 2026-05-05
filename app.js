@@ -22,13 +22,13 @@ const methodOverride= require("method-override"),
 // =========================================================
 // Config DB
 // =========================================================
-url_db= process.env.dbl;
+url_db= process.env.dbs;
 (async ()=>{try { await mongoose.connect(url_db);
     console.log ("DB connected successfully to: "+ mongoose.connection.name);
 }
 catch (err)
 {console.log(err.message);
-    process.exit(1);
+    // process.exit(1);
 }})();
 
 // FORGETTING PREVIOUS MODEL CACHE
@@ -142,12 +142,11 @@ app.post ("/strings", async (req, res) => {
     created_at     : created_at,
     timeStamp      : new Date()
     }; 
-    // console.log(typeof timeStamp);
     // writing error statuses
     found = await StringData.findOne({value: value})
 if (found && value === found.value)
-     { res.status(409).json("409 Conflict: String already exists in the system. Navigate backward to make a change!");
-        // console.error("String already exists in the system");
+     { res.status(409).json(
+"409 Conflict: String already exists in the system. Navigate backward to make a change!");
       }  else {
     try {stringData = ((await StringData.create(data)));
 
@@ -329,5 +328,5 @@ app.delete("/strings/:id", async (req, res) => {
   res.sendStatus(200);
 });
 
-port = 3000 || process.env.PORT;
+port = process.env.PORT || 3000;
 app.listen (port, console.log ("Server running on port: " + port));
