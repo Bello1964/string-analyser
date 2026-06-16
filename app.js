@@ -22,7 +22,7 @@ const methodOverride= require("method-override"),
 // =========================================================
 // Config DB
 // =========================================================
-url_db= process.env.dbs;
+url_db= process.env.dbl;
 (async ()=>{try { await mongoose.connect(url_db);
     console.log ("DB connected successfully to: "+ mongoose.connection.name);
 }
