@@ -1,2 +1,2 @@
-use api/strings
+use api/strings.
 The app is built for bloggers, essay writing judges and other professionals who need to constantly analyse blocks of words for mini analysis data such as word count, structural pattern, character count, character frequency and sha 256 hash of the posted word
